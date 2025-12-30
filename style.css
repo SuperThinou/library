@@ -71,8 +71,11 @@ a {
 }
 /* END CSS RESET */
 
-.page {
+body {
   background-color: rgb(32, 32, 32);
+}
+
+.page {
   transition: filter 0.2s ease;
   height: 100vh;
 
@@ -183,6 +186,11 @@ input {
 
   display: flex;
   justify-content: space-between;
+}
+
+.remove-book-btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 
 button:hover,

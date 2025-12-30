@@ -3,7 +3,9 @@ const bookAuthor = document.querySelector("#author");
 const bookPages = document.querySelector("#pages");
 
 const page = document.querySelector(".page");
+const libraryDiv = document.querySelector(".library-container");
 const addBookBtn = document.querySelector(".add-book-btn");
+const removeBookBtn = document.querySelector(".remove-book-btn");
 const overlayPopup = document.querySelector(".overlay");
 const addBookPopup = document.querySelector(".add-book-popup");
 const addBtn = document.querySelector("#addBtn");
@@ -36,12 +38,14 @@ function displayLibrary() {
       <h3><u>${book.title}</u></h3>
       <p><em>${book.author}</em></p>
       <p>${book.pages} pages</p>
+      <button class="remove-book-btn">❌</button>
     `;
 
     libraryDiv.appendChild(bookDiv);
   });
 }
 
+// Event listeners
 addBookBtn.addEventListener("click", () => {
   overlayPopup.classList.remove("disabled");
   page.classList.add("blur");
@@ -62,4 +66,10 @@ overlayPopup.addEventListener("click", () => {
 
 addBookPopup.addEventListener("click", (e) => {
   e.stopPropagation();
+});
+
+libraryDiv.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-book-btn")) {
+    e.target.closest(".book").remove();
+  }
 });
