@@ -8,9 +8,20 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>my Library</h1>
-    <div class="container">
-      <form class="add-book-popup disabled" action="">
+    <div class="page">
+      <h1>my Library</h1>
+      <div class="container">
+        <div class="add-book-btn">
+          <h2 class="new-book-title">New book</h2>
+        </div>
+        <div class="library-container"></div>
+      </div>
+    </div>
+
+    <!-- Add book popup -->
+
+    <div class="overlay disabled">
+      <form class="add-book-popup" action="">
         <h2 class="add-new-book-title">Add new book</h2>
 
         <input
@@ -45,10 +56,6 @@
 
         <button id="addBtn" type="button">Add</button>
       </form>
-      <div class="add-book-btn">
-        <h2 class="new-book-title">New book</h2>
-      </div>
-      <div class="library-container"></div>
     </div>
   </body>
 </html>

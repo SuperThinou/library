@@ -1,7 +1,10 @@
-const title = document.querySelector("#title");
-const author = document.querySelector("#author");
-const pages = document.querySelector("#pages");
+const bookTitle = document.querySelector("#title");
+const bookAuthor = document.querySelector("#author");
+const bookPages = document.querySelector("#pages");
+
+const page = document.querySelector(".page");
 const addBookBtn = document.querySelector(".add-book-btn");
+const overlayPopup = document.querySelector(".overlay");
 const addBookPopup = document.querySelector(".add-book-popup");
 const addBtn = document.querySelector("#addBtn");
 const book = document.querySelector(".book");
@@ -10,9 +13,9 @@ const myLibrary = [];
 
 function Book() {
   this.id = crypto.randomUUID();
-  this.title = title.value;
-  this.author = author.value;
-  this.pages = pages.value;
+  this.title = bookTitle.value;
+  this.author = bookAuthor.value;
+  this.pages = bookPages.value;
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -40,12 +43,23 @@ function displayLibrary() {
 }
 
 addBookBtn.addEventListener("click", () => {
-  addBookPopup.classList.remove("disabled");
+  overlayPopup.classList.remove("disabled");
+  page.classList.add("blur");
 });
 
 addBtn.addEventListener("click", () => {
   if (addBookPopup.checkValidity()) {
     addBookToLibrary(title, author, pages);
-    addBookPopup.classList.add("disabled");
+    overlayPopup.classList.add("disabled");
+    page.classList.remove("blur");
   } else alert("All fields are required");
+});
+
+overlayPopup.addEventListener("click", () => {
+  overlayPopup.classList.add("disabled");
+  page.classList.remove("blur");
+});
+
+addBookPopup.addEventListener("click", (e) => {
+  e.stopPropagation();
 });

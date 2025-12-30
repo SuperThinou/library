@@ -71,10 +71,11 @@ a {
 }
 /* END CSS RESET */
 
-body {
+.page {
   background-color: rgb(32, 32, 32);
-
+  transition: filter 0.2s ease;
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,11 +104,20 @@ body {
   align-items: center;
 }
 
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .add-book-popup {
   z-index: 10;
   margin: 50px;
   background-color: white;
-  position: absolute;
+
   width: 400px;
   border-radius: 30px;
 
@@ -156,6 +166,12 @@ input {
 
 .disabled {
   display: none;
+}
+
+.blur {
+  filter: blur(4px);
+  pointer-events: none; /* empêche de cliquer derrière */
+  user-select: none;
 }
 
 .book {
