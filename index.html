@@ -7,5 +7,48 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <h1>my Library</h1>
+    <div class="container">
+      <form class="add-book-popup disabled" action="">
+        <h2 class="add-new-book-title">Add new book</h2>
+
+        <input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="Title"
+          aria-label="book title"
+          required
+          maxlength="200"
+        />
+
+        <input
+          id="author"
+          name="author"
+          type="text"
+          placeholder="Author"
+          aria-label="book title"
+          required
+          maxlength="200"
+        />
+
+        <input
+          id="pages"
+          name="pages"
+          type="number"
+          placeholder="Pages"
+          aria-label="book title"
+          required
+          max="10000"
+        />
+
+        <button id="addBtn" type="button">Add</button>
+      </form>
+      <div class="add-book-btn">
+        <h2 class="new-book-title">New book</h2>
+      </div>
+      <div class="library-container"></div>
+    </div>
+  </body>
 </html>
