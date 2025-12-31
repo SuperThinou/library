@@ -194,8 +194,15 @@ label {
 }
 
 .library-container {
+  margin: 10px;
   display: flex;
   flex-direction: column-reverse;
+  overflow: auto;
+}
+
+/* Scrollbar */
+.container {
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
 }
 
 .book {
@@ -221,7 +228,7 @@ label {
   border-radius: 6px;
 }
 .read {
-  background-color: rgb(105, 255, 100);
+  background-color: rgb(103, 221, 87);
 }
 
 .remove-book-btn {
