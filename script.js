@@ -8,6 +8,7 @@ const addBookBtn = document.querySelector(".add-book-btn");
 const removeBookBtn = document.querySelector(".remove-book-btn");
 const overlayPopup = document.querySelector(".overlay");
 const addBookPopup = document.querySelector(".add-book-popup");
+const isReadCheckbox = document.querySelector("#read");
 const addBtn = document.querySelector("#addBtn");
 const book = document.querySelector(".book");
 
@@ -18,6 +19,7 @@ function Book() {
   this.title = bookTitle.value;
   this.author = bookAuthor.value;
   this.pages = bookPages.value;
+  this.read = isReadCheckbox.checked;
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -38,8 +40,14 @@ function displayLibrary() {
       <h3><u>${book.title}</u></h3>
       <p><em>${book.author}</em></p>
       <p>${book.pages} pages</p>
+      <button class="is-read-btn" data-id="${book.id}">Read</button>
       <button class="remove-book-btn">❌</button>
     `;
+
+    const readBtn = bookDiv.querySelector(`.is-read-btn[data-id="${book.id}"]`);
+    if (book.read) {
+      readBtn.classList.add("read");
+    }
 
     libraryDiv.appendChild(bookDiv);
   });
@@ -66,6 +74,12 @@ overlayPopup.addEventListener("click", () => {
 
 addBookPopup.addEventListener("click", (e) => {
   e.stopPropagation();
+});
+
+libraryDiv.addEventListener("click", (e) => {
+  if (e.target.classList.contains("is-read-btn")) {
+    e.target.classList.toggle("read");
+  }
 });
 
 libraryDiv.addEventListener("click", (e) => {
