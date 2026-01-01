@@ -27,6 +27,7 @@ class Book {
 function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(new Book(title, author, pages, read));
   displayLibrary();
+  addBookPopup.reset();
 }
 
 function displayLibrary() {
