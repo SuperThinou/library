@@ -240,3 +240,24 @@ button:hover,
 .add-book-btn:hover {
   cursor: pointer;
 }
+
+/* Footer */
+
+footer {
+  height: 50px;
+
+  background-color: rgb(15, 15, 15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.github-logo {
+  transition: 0.1s ease-in-out;
+  height: 30px;
+  margin-left: 20px;
+}
+.github-logo:hover {
+  transform: scale(1.1);
+}
