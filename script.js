@@ -14,22 +14,20 @@ const book = document.querySelector(".book");
 
 const myLibrary = [];
 
-function Book() {
+function Book(title, author, pages, read) {
   this.id = crypto.randomUUID();
-  this.title = bookTitle.value;
-  this.author = bookAuthor.value;
-  this.pages = bookPages.value;
-  this.read = isReadCheckbox.checked;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
-function addBookToLibrary(title, author, pages) {
-  myLibrary.push(new Book(title, author, pages));
+function addBookToLibrary(title, author, pages, read) {
+  myLibrary.push(new Book(title, author, pages, read));
   displayLibrary();
 }
 
 function displayLibrary() {
-  const libraryDiv = document.querySelector(".library-container");
-
   libraryDiv.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
@@ -41,7 +39,7 @@ function displayLibrary() {
       <p><em>${book.author}</em></p>
       <p>${book.pages} pages</p>
       <button class="is-read-btn" data-id="${book.id}">Read</button>
-      <button class="remove-book-btn">❌</button>
+      <button class="remove-book-btn" data-id="${book.id}">❌</button>
     `;
 
     const readBtn = bookDiv.querySelector(`.is-read-btn[data-id="${book.id}"]`);
@@ -61,7 +59,12 @@ addBookBtn.addEventListener("click", () => {
 
 addBtn.addEventListener("click", () => {
   if (addBookPopup.checkValidity()) {
-    addBookToLibrary(title, author, pages);
+    addBookToLibrary(
+      bookTitle.value,
+      bookAuthor.value,
+      bookPages.value,
+      isReadCheckbox.checked
+    );
     overlayPopup.classList.add("disabled");
     page.classList.remove("blur");
   } else alert("All fields are required");
@@ -76,14 +79,24 @@ addBookPopup.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
+// Read button
 libraryDiv.addEventListener("click", (e) => {
   if (e.target.classList.contains("is-read-btn")) {
-    e.target.classList.toggle("read");
+    const id = e.target.dataset.id;
+    const book = myLibrary.find((b) => b.id === id);
+
+    book.read = !book.read;
+    displayLibrary();
   }
 });
 
+// Remove button
 libraryDiv.addEventListener("click", (e) => {
   if (e.target.classList.contains("remove-book-btn")) {
-    e.target.closest(".book").remove();
+    const id = e.target.dataset.id;
+    const index = myLibrary.findIndex((b) => b.id === id);
+
+    myLibrary.splice(index, 1);
+    displayLibrary();
   }
 });
