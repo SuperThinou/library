@@ -219,6 +219,7 @@ label {
 
 .book * {
   margin: 0 5px;
+  align-self: center;
 }
 
 .is-read-btn {
@@ -260,4 +261,19 @@ footer {
 }
 .github-logo:hover {
   transform: scale(1.1);
+}
+
+/* Media Queries */
+@media screen and (max-width: 800px) {
+  .container,
+  .add-book-btn,
+  .library-container,
+  .book {
+    max-width: 90%;
+  }
+  .book {
+    min-width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
 }
